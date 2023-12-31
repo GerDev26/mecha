@@ -1,5 +1,5 @@
 <section id="insertVehiclesContainer">
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <h3 style="font-size: 25px;">Ingrese los datos del Vehiculo</h3>
         <datalist id="marcaDeMoto">
             <?php
@@ -23,6 +23,10 @@
         <label>
             <p>Cilindrada</p>
             <input name="cilindrada" type="number">
+        </label>
+        <label>
+            <p>Seleccione la imagen</p>
+            <input name="file" type="file" id="file">
         </label>
         <div id="buttonContainer">
             <button>Enviar</button>

@@ -13,7 +13,11 @@ class Orm{
         $stm = $this->db->prepare("SELECT * FROM $this->table JOIN $tableJoin ON $this->table.$fk = $tableJoin.id;");
         $stm->execute();
         return $stm->fetchAll();
-        echo "SELECT * FROM $this->table JOIN $tableJoin ON $this->table.$fk = $tableJoin.id;";
+    }
+    public function getAllActiveJoin($tableJoin, $fk){
+        $stm = $this->db->prepare("SELECT * FROM $this->table JOIN $tableJoin ON $this->table.$fk = $tableJoin.id WHERE estado = 1;");
+        $stm->execute();
+        return $stm->fetchAll();
     }
 
     public function searchLike($busqueda, $campo){
