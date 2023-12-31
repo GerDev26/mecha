@@ -1,6 +1,5 @@
 <?php
 class Orm{
-    protected $id;
     protected $table;
     protected $db;
 
@@ -8,6 +7,59 @@ class Orm{
         $this->id = $id;
         $this->table = $table;
         $this->db = $connection;
+    }
+
+    public function getAllJoin($tableJoin, $fk){
+        $stm = $this->db->prepare("SELECT * FROM $this->table JOIN $tableJoin ON $this->table.$fk = $tableJoin.id;");
+        $stm->execute();
+        return $stm->fetchAll();
+        echo "SELECT * FROM $this->table JOIN $tableJoin ON $this->table.$fk = $tableJoin.id;";
+    }
+
+    public function searchLike($busqueda, $campo){
+        if(is_string($busqueda)){
+            $stm = $this->db->prepare("SELECT * FROM $this->table WHERE $campo LIKE '%$busqueda%'");
+        }
+        else{
+            $stm = $this->db->prepare("SELECT * FROM $this->table WHERE $campo LIKE $busqueda;");
+        }
+        $stm->execute();
+        return $stm->fetchAll();
+    }
+    
+    public function searchBy($busqueda, $campo){
+        if(is_string($busqueda)){
+            $stm = $this->db->prepare("SELECT * FROM $this->table WHERE $campo = '$busqueda'");
+        }
+        else{
+            $stm = $this->db->prepare("SELECT * FROM $this->table WHERE $campo = $busqueda");
+        }
+        $stm->execute();
+        return $stm->fetchAll();
+    }
+
+    public function issetRows($busqueda, $campo){
+        if(is_string($busqueda)){
+            $stm = $this->db->prepare("SELECT * FROM $this->table WHERE $campo = '$busqueda'");
+        }
+        else{
+            $stm = $this->db->prepare("SELECT * FROM $this->table WHERE $campo = $busqueda");
+        }
+        $stm->execute();
+
+        if($stm->rowCount()>0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
+    public function getAllActive(){
+        $stm = $this->db->prepare("SELECT * FROM $this->table WHERE estado = 1;");
+        $stm->execute();
+        return $stm->fetchAll();
     }
 
     public function getAll(){
@@ -57,7 +109,7 @@ class Orm{
         $sql = trim($sql, ", ");
         $sql .= ");";
         $stm = $this->db->prepare($sql);
-
+        
         foreach ($datos as $key => $value) {
             $stm->bindValue(":{$key}", $value);
         }

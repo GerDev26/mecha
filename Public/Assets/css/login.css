@@ -7,12 +7,6 @@ input{
     height: 30%;
     border: none;
 }
-input:focus{
-    outline: 2px solid #152039;
-}
-input:hover{
-    outline: 2px solid #ca4348;
-}
 label{
     display: flex;
     flex-direction: column;

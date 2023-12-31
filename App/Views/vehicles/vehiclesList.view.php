@@ -1,14 +1,17 @@
 <section class="articleContainer">
   <article>
     <div class="imageContainer">
-      <a href="./new">
+      <a href="<?php echo URL_PATH?>/vehicles/newVehicle">
         <img src="<?php echo URL_PATH; ?>/Assets/img/añadir.png" alt="">
       </a>
     </div>
   </article>
+  <?php
+    foreach ($todasLasMotos as $key) {
+    ?>
   <article>
     <div class="imageContainer">
-      <img src="<?php echo URL_PATH; ?>/Assets/img/vehiculos/ktm/duke200.jpg" alt="">
+      <img src="<?php echo URL_PATH; ?>/Assets/img/vehiculos/<?php echo $key['descripcion'], '/', $key['modelo']; ?>.jpg" alt="">
     </div>
     <form class="information">
       <div class="dataContainer">
@@ -18,14 +21,17 @@
         <a role="button" href="#eliminar"><button>Eliminar</button></a>
       </div>
       <div class="dataContainer">
-        <p>KTM</p>
-        <p>duke200</p>
-        <p>2020</p>
+        <p><?php echo $key["descripcion"]; ?></p>
+        <p><?php echo $key["modelo"]; ?></p>
+        <p><?php echo $key["fecha"]; ?></p>
         <a role="button" href="#modificar"><button>Modificar</button></a>
       </div>
     </form>
   </article>
-  <article>
+  <?php
+    }
+    ?>
+    <article>
     <div class="imageContainer">
       <img src="<?php echo URL_PATH; ?>/Assets/img/vehiculos/yamaha/XTZ125.png" alt="">
     </div>
