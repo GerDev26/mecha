@@ -10,14 +10,39 @@ class Orm{
     }
 
     public function getAllJoin($tableJoin, $fk){
-        $stm = $this->db->prepare("SELECT * FROM $this->table JOIN $tableJoin ON $this->table.$fk = $tableJoin.id;");
+        $stm = $this->db->prepare("SELECT * FROM $this->table JOIN $tableJoin ON $this->table.$fk = $tableJoin.id$tableJoin;");
         $stm->execute();
         return $stm->fetchAll();
     }
+
     public function getAllActiveJoin($tableJoin, $fk){
-        $stm = $this->db->prepare("SELECT * FROM $this->table JOIN $tableJoin ON $this->table.$fk = $tableJoin.id WHERE estado = 1;");
+        $stm = $this->db->prepare("SELECT * FROM $this->table JOIN $tableJoin ON $this->table.$fk = $tableJoin.id$tableJoin WHERE estado = 1;");
         $stm->execute();
         return $stm->fetchAll();
+    }
+
+    public function getAllActive(){
+        $stm = $this->db->prepare("SELECT * FROM $this->table WHERE estado = 1;");
+        $stm->execute();
+        return $stm->fetchAll();
+    }
+
+    public function getAll(){
+        $stm = $this->db->prepare("SELECT * FROM $this->table;");
+        $stm->execute();
+        return $stm->fetchAll();
+    }
+
+    public function getById($id){
+        $stm = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = {$id}");
+        $stm->execute();
+        return $stm->fetch();
+    }
+
+    public function getByIdJoin($tableJoin, $fk, $id){
+        $stm = $this->db->prepare("SELECT * FROM $this->table JOIN $tableJoin ON $this->table.$fk = $tableJoin.id$tableJoin WHERE idVehiculos = $id;");
+        $stm->execute();
+        return $stm->fetch();
     }
 
     public function searchLike($busqueda, $campo){
@@ -59,25 +84,6 @@ class Orm{
         }
     }
 
-
-    public function getAllActive(){
-        $stm = $this->db->prepare("SELECT * FROM $this->table WHERE estado = 1;");
-        $stm->execute();
-        return $stm->fetchAll();
-    }
-
-    public function getAll(){
-        $stm = $this->db->prepare("SELECT * FROM $this->table;");
-        $stm->execute();
-        return $stm->fetchAll();
-    }
-
-    public function getById($id){
-        $stm = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = {$id}");
-        $stm->execute();
-        return $stm->fetch();
-    }
-
     public function deleteById($id){
         $stm = $this->db->prepare("DELETE FROM {$this->table} WHERE id = {$id};");
         $stm->execute();
@@ -88,14 +94,14 @@ class Orm{
             $sql .= "{$key} = :{$key},";
         }
         $sql = trim($sql, ',');
-        $sql .= " WHERE id = :id ";
+        $sql .= " WHERE id$this->table = :id$this->table ";
         $stm = $this->db->prepare($sql);
 
         foreach ($datos as $key => $value) {
             $stm->bindValue(":{$key}", $value);
         }
 
-        $stm->bindValue(":id", $id);      
+        $stm->bindValue(":id$this->table", $id);      
         $stm->execute();
     }
 

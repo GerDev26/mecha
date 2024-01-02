@@ -1,3 +1,6 @@
+body .dataContainer p {
+  margin: 0px;
+}
 .articleContainer{
     box-sizing: border-box;
     display: flex;
@@ -7,23 +10,35 @@
     width: 98%;
     gap: 15px;
     margin-left: 10px;
-    margin-top: 10px;
+    margin-top: 15px;
     margin-right: 10px;
 }
 article{
     box-sizing: border-box;
     display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     border-radius: 10px;
     width: 200px;
     height: 300px;
     background-color: #1a2d3e;
+    transition-duration: 0.3s;
 }
 article:hover {
-  outline: 5px solid #c2666e;
+  transform: scale(1.1); /* Escala 1.5 veces al pasar el mouse */
+  z-index: 1; /* Coloca el elemento agrandado por encima de los demás al pasar el mouse */
+  box-shadow: 0 0 10px #c2666e;
 }
 article:first-child .imageContainer{
   background-color: #1a2d3e;
+}
+article:first-child .imageContainer img{
+  max-width: 60%;
+  position: absolute;
+  inset: 0;
+  margin: auto;
 }
 
 .imageContainer {
@@ -31,8 +46,8 @@ article:first-child .imageContainer{
     align-items: center;
     justify-content: center;
     align-self: center;
-    margin-top: 20px;
-    width: 150px; /* Establece el ancho máximo del contenedor según tus necesidades */
+    margin-top: 15px;
+    width: 90%; /* Establece el ancho máximo del contenedor según tus necesidades */
     height: 200px; 
     background-color: white;
     border-radius: 5px;
@@ -46,13 +61,24 @@ article:first-child .imageContainer{
   .information{
     display: flex;
     flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 90%;
+    height: 50%;
+    gap: 5px;
+    margin-bottom: 35px;
   }
   .dataContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
     font-size: 16px;
     color: #f5f5f5;
-    margin-bottom: 10px;
+    position: relative;
+  }
+  .dataContainer p {
+    text-overflow:ellipsis;
   }
   .dataContainer:first-child{
     text-align: left;
@@ -60,7 +86,14 @@ article:first-child .imageContainer{
   .dataContainer:last-child{
     text-align: right;
   }
-  .dataContainer p{
-    margin: 10px;
+  #Eliminar{
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+  }
+  #Modificar{
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
   }
   

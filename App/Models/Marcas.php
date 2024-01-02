@@ -5,7 +5,7 @@ require_once(__DIR__ . "/../Core/Orm.php");
             parent::__construct("id", "MARCAS", $connection);
         }
         public function issetMarca($busqueda){
-            $stm = $this->searchBy($busqueda, "descripcion");
+            $stm = $this->searchBy($busqueda, "marca");
             $filasAfectadas = $this->rowCount();
         }
         public function saludar(){

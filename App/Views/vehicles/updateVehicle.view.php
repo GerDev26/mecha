@@ -1,7 +1,7 @@
 <section id="insertVehiclesContainer">
     <div class="formContainer">
         <form method="POST" enctype="multipart/form-data">
-            <h3 style="font-size: 25px;">Ingresar Vehiculos</h3>
+            <h3 style="font-size: 25px;">Modificar Vehiculo</h3>
             <datalist id="marcaDeMoto">
                 <?php
                 foreach ($todasLasMarcas as $key) {
@@ -11,19 +11,19 @@
             </datalist>
             <label>
                 <p>Marca</p>
-                <input list="marcaDeMoto" name="marca" required>
+                <input list="marcaDeMoto" name="marca" value="<?php echo $motoSeleccionada["marca"]?>">
             </label>
             <label>
                 <p>Modelo</p>
-                <input name="modelo" type="text" required>
+                <input name="modelo" type="text" value="<?php echo $motoSeleccionada["modelo"]?>">
             </label>
             <label>
                 <p>Año</p>
-                <input name="fecha" type="number" required>
+                <input name="fecha" type="number" value="<?php echo $motoSeleccionada["fecha"]?>">
             </label>
             <label>
                 <p>Cilindrada</p>
-                <input name="cilindrada" type="number" required>
+                <input name="cilindrada" type="number" value="<?php echo $motoSeleccionada["cilindrada"]?>">
             </label>
             <a href="<?php echo URL_PATH?>/vehicles/List"><button id="Volver" type="button" >Volver</button></a>
         </div>
