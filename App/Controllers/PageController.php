@@ -2,7 +2,7 @@
 
     class PageController extends Controller{
         public function __construct(PDO $conection){
-            $this->dir="page/";
+            $this->dir="/page/";
         }
         public function home(){
             $this->render("index", "navigation");

@@ -21,22 +21,27 @@
                 "todasLasMotos" => $todasLasMotos
             ]);
         }
-        public function newVehicle(){
+        public function new(){
             
             $database = new Database();
             $conection = $database->getConnection();
 
             $this->includeClass([
                 "Vehicles",
-                "Marcas"
+                "Marcas",
+                "Tecnologias",
+                "VEH_TEC"
             ]);
 
             $marca = new Marcas($conection);
+            $tecnologia = new Tecnologias($conection);
 
             $todasLasMarcas=$marca->getAll();
+            $todasLasTecnologias=$tecnologia->getAll();
 
             $this->render("newVehicle", "form", [
-                'todasLasMarcas' => $todasLasMarcas
+                'todasLasMarcas' => $todasLasMarcas,
+                'todasLasTecnologias' => $todasLasTecnologias
             ]);
 
             if(isset($_POST["marca"])){
@@ -70,7 +75,16 @@
                     "rutaImagen"=>$rutaImagen
                 ]);
 
-                
+                $vehTec = new VEH_TEC($conection);
+                $idMoto = $motoIngresada->searchBy($_POST["modelo"], "modelo");
+
+                foreach ($_POST["tecnologias"] as $key) {
+                    $idTec = $tecnologia->searchBy($key, "tecnologia");
+                    $vehTec->insert([
+                        "fkVehiculo" => $idMoto[0]["idVehiculos"],
+                        "fkTecnologia" => $idTec[0]["idTecnologias"]
+                    ]);
+                }
             }
             
         }
@@ -101,19 +115,26 @@
 
             $this->includeClass([
                 "Vehicles",
-                "Marcas"
+                "Marcas",
+                "Tecnologias",
+                "VEH_TEC"
             ]);
 
+            $tecnologia = new Tecnologias($conection);
             $marca = new Marcas($conection);
             $motos = new Vehicles($conection);
+            $vehTec = new VEH_TEC($conection);
 
-            $todasLasMarcas=$marca->getAll(); 
+            $todasLasMarcas=$marca->getAll();
+
+            $tecnologiaDeLaMoto = $vehTec->getVehTec($_POST["id"]);
 
             $motoSeleccionada = $motos->getByIdJoin("MARCAS", "fkMarca", $_POST["id"]);
 
             $this->render("updateVehicle", "form", [
                 'todasLasMarcas' => $todasLasMarcas,
-                'motoSeleccionada' => $motoSeleccionada
+                'motoSeleccionada' => $motoSeleccionada,
+                'tecnologiaDeLaMoto' => $tecnologiaDeLaMoto
             ]);
 
             if(isset($_POST["marca"])){

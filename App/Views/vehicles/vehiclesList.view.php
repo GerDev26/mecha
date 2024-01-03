@@ -2,7 +2,7 @@
 
   <article>
     <div class="imageContainer">
-      <a href="<?php echo URL_PATH?>/vehicles/newVehicle">
+      <a href="<?php echo URL_PATH?>/vehicles/new">
         <img src="<?php echo URL_PATH; ?>/Assets/img/añadir.png" alt="Imagen con un simbolo +">
       </a>
     </div>

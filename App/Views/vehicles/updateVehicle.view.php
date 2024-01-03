@@ -9,6 +9,7 @@
                 }
                 ?>
             </datalist>
+            <input type="hidden" name="id" value="<?php echo $motoSeleccionada["idVehiculos"]?>">
             <label>
                 <p>Marca</p>
                 <input list="marcaDeMoto" name="marca" value="<?php echo $motoSeleccionada["marca"]?>">
@@ -33,29 +34,19 @@
                 <p>Seleccione la imagen</p>
                 <input name="file" type="file" id="file">
             </label>
-            <div class="checkboxContainer">
-                <label>
-                    Opción 1
-                    <input type="checkbox" name="opcion1" value="opcion1">
-                </label>
-                <label>
-                    Opción 1
-                    <input type="checkbox" name="opcion1" value="opcion1">
-                </label>
-                <label>
-                    Opción 1
-                    <input type="checkbox" name="opcion1" value="opcion1">
-                </label>
-                <label>
-                    Opción 1   
-                    <input type="checkbox" name="opcion1" value="opcion1">
-                </label>
-                <label>
-                    Opción 1
-                    <input type="checkbox" name="opcion1" value="opcion1">
-                </label>
-            </div>
             <button id="Enviar">Enviar</button>
         </form>
+            <div class="checkboxContainer">
+                <?php
+                foreach ($tecnologiaDeLaMoto as $key) {
+                ?>
+                <label>
+                    <p><?php echo $key["tecnologia"]; ?></p>
+                    <input type="checkbox" name="tecnologias[]" value="<?php echo $key["tecnologia"]; ?>">
+                </label>
+                <?php
+                }
+                ?>
+            </div>
         </div>
 </section>

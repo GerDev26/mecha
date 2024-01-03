@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<?php echo URL_PATH; ?>/Assets/css/articles.css"> 
   <link rel="stylesheet" href="<?php echo URL_PATH; ?>/Assets/css/navBar.css">
-  <link rel="stylesheet" href="<?php echo URL_PATH; ?>/Assets/css/body copy.css"> 
+  <link rel="stylesheet" href="<?php echo URL_PATH; ?>/Assets/css/body.css"> 
   <title>Menu</title>
 </head>
 <body>

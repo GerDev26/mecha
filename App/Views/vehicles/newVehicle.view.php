@@ -34,28 +34,22 @@
                 <input name="file" type="file" id="file">
             </label>
             <div class="checkboxContainer">
+                <?php
+                foreach ($todasLasTecnologias as $key) {
+                ?>
                 <label>
-                    Opción 1
-                    <input type="checkbox" name="opcion1" value="opcion1">
+                    <p><?php echo $key["tecnologia"]; ?></p>
+                    <input type="checkbox" name="tecnologias[]" value="<?php echo $key["tecnologia"]; ?>">
                 </label>
-                <label>
-                    Opción 1
-                    <input type="checkbox" name="opcion1" value="opcion1">
-                </label>
-                <label>
-                    Opción 1
-                    <input type="checkbox" name="opcion1" value="opcion1">
-                </label>
-                <label>
-                    Opción 1   
-                    <input type="checkbox" name="opcion1" value="opcion1">
-                </label>
-                <label>
-                    Opción 1
-                    <input type="checkbox" name="opcion1" value="opcion1">
-                </label>
+                <?php
+                }
+                ?>
+                <button id="Enviar">Enviar</button>
+            </form>
             </div>
-            <button id="Enviar">Enviar</button>
-        </form>
+            <form id="agregarTecnologia" action="../tecnology/new" method="POST">
+                    <button>Agregar</button>
+                    <input type="text" name="tecnologia">
+            </form>
         </div>
 </section>
