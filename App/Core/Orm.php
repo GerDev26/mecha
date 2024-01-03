@@ -85,7 +85,18 @@ class Orm{
     }
 
     public function deleteById($id){
-        $stm = $this->db->prepare("DELETE FROM {$this->table} WHERE id = {$id};");
+        if(is_array($id)){
+            foreach ($id as $key) {
+                $placeholders = $key["id{$this->table}"]. ", ";
+                $placeholders = trim($placeholders. ", ");
+            }
+            $sql = "DELETE FROM {$this->table} WHERE id$this->table IN ($placeholders);";
+        }
+        else{
+            $sql = "DELETE FROM {$this->table} WHERE id$this->table = {$id};";
+        }
+        $stm = $this->db->prepare($sql);
+
         $stm->execute();
     }
     public function updateById($id, $datos) {

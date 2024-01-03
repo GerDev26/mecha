@@ -27,7 +27,7 @@
                 <input name="cilindrada" type="number" value="<?php echo $motoSeleccionada["cilindrada"]?>">
             </label>
             <a href="<?php echo URL_PATH?>/vehicles/List"><button id="Volver" type="button" >Volver</button></a>
-        </div>
+    </div>
 
         <div class="formContainer">
             <label class="file-select">
@@ -35,18 +35,28 @@
                 <input name="file" type="file" id="file">
             </label>
             <button id="Enviar">Enviar</button>
-        </form>
             <div class="checkboxContainer">
+                <?php
+                foreach ($tecnologiasRestantes as $key) {
+                ?>
+                <label class="todasLasTec">
+                    <p><?php echo $key["tecnologia"]; ?></p>
+                    <input type="checkbox" name="tecRestante[]" value="<?php echo $key["idTecnologias"]; ?>">
+                </label>
+                <?php
+                }
+                ?>
                 <?php
                 foreach ($tecnologiaDeLaMoto as $key) {
                 ?>
-                <label>
+                <label class="tecDelVehiculo">
                     <p><?php echo $key["tecnologia"]; ?></p>
-                    <input type="checkbox" name="tecnologias[]" value="<?php echo $key["tecnologia"]; ?>">
+                    <input type="checkbox" name="tecVehiculo[]" value="<?php echo $key["idTecnologias"]; ?>">
                 </label>
                 <?php
                 }
                 ?>
             </div>
+        </form>
         </div>
 </section>

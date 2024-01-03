@@ -127,18 +127,26 @@
 
             $todasLasMarcas=$marca->getAll();
 
-            $tecnologiaDeLaMoto = $vehTec->getVehTec($_POST["id"]);
+            $tecnologiaDeLaMoto = $vehTec->getVehTec($_POST["id"], "VEHICULOS");
+
+            if(empty($tecnologiaDeLaMoto)){
+                $tecnologiasRestantes = $tecnologia->getAll();
+            }
+            else{
+                $tecnologiasRestantes = $tecnologia->getTecDifference($tecnologiaDeLaMoto);
+            }
+
 
             $motoSeleccionada = $motos->getByIdJoin("MARCAS", "fkMarca", $_POST["id"]);
 
             $this->render("updateVehicle", "form", [
                 'todasLasMarcas' => $todasLasMarcas,
                 'motoSeleccionada' => $motoSeleccionada,
-                'tecnologiaDeLaMoto' => $tecnologiaDeLaMoto
+                'tecnologiaDeLaMoto' => $tecnologiaDeLaMoto,
+                'tecnologiasRestantes' => $tecnologiasRestantes
             ]);
 
             if(isset($_POST["marca"])){
-                echo $_POST["id"];
                 $existeLaMarca = $marca->issetRows($_POST["marca"], "marca");
                     
                 if(!$existeLaMarca){                    
@@ -155,6 +163,7 @@
                 else{
                     $rutaImagen = $motoSeleccionada["rutaImagen"];
                 }
+
                 $motos->updateById($_POST["id"], [
                     "modelo"=>$_POST['modelo'],
                     "fecha"=>$_POST['fecha'],
@@ -162,6 +171,7 @@
                     "cilindrada"=>$_POST["cilindrada"],
                     "rutaImagen"=>$rutaImagen
                 ]);
+
 
                 header("Location: ./list");
 

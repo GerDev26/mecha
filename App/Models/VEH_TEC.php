@@ -4,16 +4,16 @@ require_once(__DIR__ . "/../Core/Orm.php");
         public function __construct(PDO $connection){
             parent::__construct("id", "VEH_TEC", $connection);
         }
-        public function getVehTec($id){
-            $sql = "SELECT TECNOLOGIAS.tecnologia
+        public function getVehTec($id, $tabla){
+            $sql = "SELECT TECNOLOGIAS.tecnologia, TECNOLOGIAS.idTecnologias
             FROM
-                VEH_TEC
+                $this->table
             JOIN
                 VEHICULOS ON VEH_TEC.fkVehiculo = VEHICULOS.idVehiculos
             JOIN
                 TECNOLOGIAS ON VEH_TEC.fkTecnologia = TECNOLOGIAS.idTecnologias
             WHERE
-                VEHICULOS.idVehiculos = $id;";
+                $tabla.id$tabla = $id;";
             $stm = $this->db->prepare($sql);
             $stm->execute();
             return $stm->fetchAll();

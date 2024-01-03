@@ -37,7 +37,7 @@
                 <?php
                 foreach ($todasLasTecnologias as $key) {
                 ?>
-                <label>
+                <label class="todasLasTec">
                     <p><?php echo $key["tecnologia"]; ?></p>
                     <input type="checkbox" name="tecnologias[]" value="<?php echo $key["tecnologia"]; ?>">
                 </label>
@@ -47,9 +47,5 @@
                 <button id="Enviar">Enviar</button>
             </form>
             </div>
-            <form id="agregarTecnologia" action="../tecnology/new" method="POST">
-                    <button>Agregar</button>
-                    <input type="text" name="tecnologia">
-            </form>
         </div>
 </section>
