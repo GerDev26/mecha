@@ -23,7 +23,7 @@ body p{
     flex-direction: column;
     color: #f5f5f5;
     width: 400px;
-    height: 550px;
+    height: 600px;
     gap: 40px;
 }
 .formContainer:last-child{
@@ -46,8 +46,11 @@ body p{
     overflow-x: hidden;
     align-items: center;
     width: 250px;
-    height: 220px;
+    height: 150px;
     gap: 10px;
+    border: 3px solid #c2666e;
+    border-radius: 10px;
+    padding: 5px;
 }
 .checkboxContainer label{
     display: flex;
@@ -59,7 +62,9 @@ body p{
     gap: 20px;
     border-radius: 50px;
     background-color: #c2666e;
+    color: white;
 }
+
 .checkboxContainer label:hover{
     background-color: #f5f5f5;
     color: #c2666e;
@@ -70,6 +75,7 @@ body p{
 .checkboxContainer label p{
     margin-left: 10px;
 }
+
 
 label{
     display: inline-block; /* Esto asegura que el ancho se ajuste al contenido sin forzar un salto de línea */
@@ -114,10 +120,7 @@ input[type="password"]:hover, input[type="text"]:hover, input[type="number"]:hov
     height: 10px;
     display: inline-block;
 }
-.tecDelVehiculo{
-    background-color: blue;
-    color: red;
-}
+
 #Volver{
     font-size: 15px;
     width: 100px;
@@ -136,7 +139,7 @@ input[type="password"]:hover, input[type="text"]:hover, input[type="number"]:hov
 }
 /* Estilos para WebKit (Chrome, Safari) */
 ::-webkit-scrollbar {
-    width: 3px; /* Ancho de la barra de desplazamiento */
+    width: 2px; /* Ancho de la barra de desplazamiento */
 }
 
 ::-webkit-scrollbar-thumb {
@@ -145,5 +148,5 @@ input[type="password"]:hover, input[type="text"]:hover, input[type="number"]:hov
 }
 
 ::-webkit-scrollbar-track {
-    background-color: #f5f5f5; /* Color de fondo de la barra de desplazamiento */
+    background-color: none; /* Color de fondo de la barra de desplazamiento */
 }

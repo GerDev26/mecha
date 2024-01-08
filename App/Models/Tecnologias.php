@@ -15,8 +15,6 @@ require_once(__DIR__ . "/../Core/Orm.php");
                     FROM $this->table
                     WHERE tecnologia NOT IN ($placeholders);";
 
-            echo $sql;
-            
             $stm = $this->db->prepare($sql);
             $stm->execute();
             

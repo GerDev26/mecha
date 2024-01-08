@@ -172,6 +172,18 @@
                     "rutaImagen"=>$rutaImagen
                 ]);
 
+                if(!empty($_POST["tecRestante"])){
+                    foreach ($_POST["tecRestante"] as $key) {
+                        $vehTec->insert([
+                            "fkVehiculo" => $_POST["id"],
+                            "fkTecnologia" => $key
+                        ]);
+                    }
+                }
+
+                if(!empty($_POST["tecVehiculo"])){
+                    $vehTec->deleteTecnologyAsociated($_POST["id"], $_POST["tecVehiculo"]);
+                }
 
                 header("Location: ./list");
 

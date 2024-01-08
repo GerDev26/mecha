@@ -18,5 +18,26 @@ require_once(__DIR__ . "/../Core/Orm.php");
             $stm->execute();
             return $stm->fetchAll();
         }
+
+        public function deleteTecnologyAsociated($vehId, $tecIds){
+            $placeholders = "";
+            foreach ($tecIds as $key) {
+                $placeholders .= $key . ", ";
+            }
+            $placeholders = trim($placeholders,  ", ");
+
+            $sql = "SELECT * 
+                    FROM {$this->table} 
+                    WHERE fktecnologia IN ($placeholders)
+                    AND fkvehiculo = $vehId";
+                    
+            $stm = $this->db->prepare($sql);
+            $stm->execute();
+            $vehtec = $stm->fetchAll();
+            foreach ($vehtec as $key) {
+                $this->deleteById($key["idVEH_TEC"]);
+            }
+
+        }
     }
 ?>

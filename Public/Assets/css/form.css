@@ -76,6 +76,8 @@ body p{
     color: #c2666e;
 }
 .checkboxContainer label input{
+    background-color: #c2666e;
+    color: white;
     margin-right: 10px;
 }
 .checkboxContainer label p{
