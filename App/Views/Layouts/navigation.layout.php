@@ -15,5 +15,6 @@
   echo $content; 
   
   ?>
+  <script src="<?php echo URL_PATH ?>/assets/js/modal.js"></script>
 </body>
 </html>

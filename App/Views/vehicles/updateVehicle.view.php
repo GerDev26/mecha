@@ -60,8 +60,8 @@
                 }
                 ?>
             </div>
-            <a href="<?php echo URL_PATH?>/vehicles/List"><button id="Volver" type="button" >Volver</button></a>
-            <button id="Enviar">Modificar</button>
+            <button class="botonesDeFormulario" type="button" onclick="window.location.href='<?php echo URL_PATH ?>/vehicles/list';">Volver</button>
+            <button class="botonesDeFormulario">Modificar</button>
         </form>
         </div>
 </section>

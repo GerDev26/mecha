@@ -36,16 +36,24 @@
         </div>
 
       </div>
+      
+    <button onclick="openDialog()" class="botonesDeFormulario">Eliminar</button>
 
-        <form action="<?php echo URL_PATH?>/vehicles/delete" method="POST">
-            <button id="Eliminar">Eliminar</button>
-            <input type="hidden" value="<?php echo $key["idVehiculos"]; ?>" name="id">
-          </form>
+    <dialog id="myModal">
+      <h3>¿Seguro que desea eliminar este modelo?</h3>
+      <form action="<?php echo URL_PATH?>/vehicles/delete" method="POST">
+        <input type="hidden" value="<?php echo $key["idVehiculos"]; ?>" name="id">
+        <button class="botonesDeFormulario">Eliminar</button>
+        <button class="botonesDeFormulario" type="button" onclick="closeDialog()">Cancelar</button>
+      </form>
+    </dialog>
 
-        <form action="<?php echo URL_PATH?>/vehicles/update" method="POST">
-          <button id="Modificar">Modificar</button>
-          <input type="hidden" value="<?php echo $key["idVehiculos"]; ?>" name="id">
-        </form>
+        
+        
+    <form action="<?php echo URL_PATH?>/vehicles/update" method="POST">
+      <button id="Modificar">Modificar</button>
+      <input type="hidden" value="<?php echo $key["idVehiculos"]; ?>" name="id">
+    </form>
 
     </article>
 

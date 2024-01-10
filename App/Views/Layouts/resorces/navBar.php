@@ -14,6 +14,9 @@
   <div class="items">
     <a href="" role="button">Trabajos</a>
   </div>
+  <div class="items">
+    <a href="" role="button">Tecnologia</a>
+  </div>
   <div class="items"> 
     <a href="<?php echo URL_PATH?>/page/login" role="button">Cerrar Sesion</a>
   </div>
