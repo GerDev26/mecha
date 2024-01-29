@@ -14,11 +14,7 @@
 
             $tecnologia = new Tecnologias($conection);
 
-            $tecnologia->insert([
-                "tecnologia" => $_POST["tecnologia"]
-            ]);
-
-            header("Location: ../vehicles/new");
+            $this->render("new", "form");
         }
     }
 

@@ -85,8 +85,9 @@ class Orm{
     }
 
     public function deleteById($id){
-        $sql = "DELETE FROM {$this->table} WHERE id$this->table = {$id};";
+        $sql = "DELETE FROM {$this->table} WHERE id{$this->table} = {$id};";
         $stm = $this->db->prepare($sql);
+        echo $sql;
 
         $stm->execute();
     }

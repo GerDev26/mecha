@@ -25,13 +25,13 @@
                 <p>Cilindrada</p>
                 <input name="cilindrada" type="number" required>
             </label>
-        </div>
-
-        <div class="formContainer">
             <label class="file-select">
                 <p>Seleccione la imagen</p>
                 <input name="file" type="file" id="file">
             </label>
+        </div>
+
+        <div class="formContainer">
             <div class="checkboxContainer">
                 <h3>Agregar Tecnologia</h3>
                 <?php
@@ -44,8 +44,8 @@
                 <?php
                 }
                 ?>
-                <a href="<?php echo URL_PATH?>/vehicles/List"><button id="Volver" type="button" >Volver</button></a>
-                <button id="Enviar">Subir</button>
+                <button class="botonesDeFormulario" type="button" onclick="window.location.href='<?php echo URL_PATH ?>/vehicles/list';">Volver</button>
+                <button class="botonesDeFormulario">Subir</button>
             </form>
             </div>
         </div>

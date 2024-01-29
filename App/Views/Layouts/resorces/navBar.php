@@ -12,10 +12,10 @@
     <a href="<?php echo URL_PATH?>/vehicles/list" role="button">Vehiculos</a>
   </div>
   <div class="items">
-    <a href="" role="button">Trabajos</a>
+    <a href="<?php echo URL_PATH?>/tecnology/new" role="button">Trabajos</a>
   </div>
   <div class="items">
-    <a href="" role="button">Tecnologia</a>
+    <a href="<?php echo URL_PATH?>/tecnology/new" role="button">Tecnologia</a>
   </div>
   <div class="items"> 
     <a href="<?php echo URL_PATH?>/page/login" role="button">Cerrar Sesion</a>

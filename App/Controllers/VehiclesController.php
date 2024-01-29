@@ -95,13 +95,15 @@
             $conection = $database->getConnection();
 
             $this->includeClass([
-                "Vehicles"
+                "Vehicles",
+                "VEH_TEC"
             ]);
             echo $_POST["id"];
+            $eliminarTecnologias = new VEH_TEC($conection);
             $eliminarMoto = new Vehicles($conection);
-            $eliminarMoto->updateById($_POST["id"], [
-                "estado"=>0
-            ]);
+
+            $eliminarMoto->deleteById($_POST["id"]);
+            $eliminarTecnologias->deleteAllTecnologyAsociated($_POST["id"]);
 
             header("Location: ./list");
 
@@ -127,7 +129,7 @@
 
             $todasLasMarcas=$marca->getAll();
 
-            $tecnologiaDeLaMoto = $vehTec->getVehTec($_POST["id"], "VEHICULOS");
+            $tecnologiaDeLaMoto = $vehTec->getVehicleTec($_POST["id"]);
 
             if(empty($tecnologiaDeLaMoto)){
                 $tecnologiasRestantes = $tecnologia->getAll();

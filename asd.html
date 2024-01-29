@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternar Entre Dos Secciones</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<button onclick="showSection('seccion1')">Mostrar Sección 1</button>
+<button onclick="showSection('seccion2')">Mostrar Sección 2</button>
+
+<section id="seccion1" class="hidden">
+    <h2>Contenido de la Sección 1</h2>
+    <p>Este es el contenido de la primera sección.</p>
+</section>
+
+<section id="seccion2" class="hidden">
+    <h2>Contenido de la Sección 2</h2>
+    <p>Este es el contenido de la segunda sección.</p>
+</section>
+
+<script>
+    function showSection(sectionId) {
+        var sections = document.querySelectorAll('section');
+        sections.forEach(function(section) {
+            if (section.id === sectionId) {
+                section.classList.remove('hidden');
+            } else {
+                section.classList.add('hidden');
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

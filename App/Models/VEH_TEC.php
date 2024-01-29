@@ -4,7 +4,7 @@ require_once(__DIR__ . "/../Core/Orm.php");
         public function __construct(PDO $connection){
             parent::__construct("id", "VEH_TEC", $connection);
         }
-        public function getVehTec($id, $tabla){
+        public function getVehicleTec($id){
             $sql = "SELECT TECNOLOGIAS.tecnologia, TECNOLOGIAS.idTecnologias
             FROM
                 $this->table
@@ -13,7 +13,7 @@ require_once(__DIR__ . "/../Core/Orm.php");
             JOIN
                 TECNOLOGIAS ON VEH_TEC.fkTecnologia = TECNOLOGIAS.idTecnologias
             WHERE
-                $tabla.id$tabla = $id;";
+                VEHICULOS.idVEHICULOS = $id;";
             $stm = $this->db->prepare($sql);
             $stm->execute();
             return $stm->fetchAll();
@@ -26,18 +26,15 @@ require_once(__DIR__ . "/../Core/Orm.php");
             }
             $placeholders = trim($placeholders,  ", ");
 
-            $sql = "SELECT * 
-                    FROM {$this->table} 
-                    WHERE fktecnologia IN ($placeholders)
-                    AND fkvehiculo = $vehId";
+            $sql = "DELETE FROM {$this->table} WHERE fktecnologia IN ($placeholders) AND fkvehiculo = $vehId;";
                     
             $stm = $this->db->prepare($sql);
             $stm->execute();
-            $vehtec = $stm->fetchAll();
-            foreach ($vehtec as $key) {
-                $this->deleteById($key["idVEH_TEC"]);
-            }
-
+        }
+        public function deleteAllTecnologyAsociated($vehId){
+            $sql = "DELETE FROM {$this->table} WHERE fkvehiculo = $vehId;";
+            $stm = $this->db->prepare($sql);
+            $stm->execute();
         }
     }
 ?>
